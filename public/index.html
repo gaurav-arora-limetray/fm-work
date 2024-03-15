@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bandcamp Wishlist Downloader</title>
+</head>
+<body>
+    <label for="bandcampPage">Bandcamp page:</label>
+    <input type="text" id="bandcampPage" name="bandcampPage" value="https://bandcamp.com/7757699534/wishlist">
+    <button id="downloadWishlist">Download Full Wishlist</button>
+    <button id="downloadFiveRecords">Download First 5 Records</button> <!-- New button for 5 records -->
+    <div id="insertionCount"></div>
+
+    <script>
+document.getElementById('downloadWishlist').addEventListener('click', function() {
+    sendWishlistToServer('/download-wishlist', document.getElementById('bandcampPage').value);
+});
+
+document.getElementById('downloadFiveRecords').addEventListener('click', function() {
+    // Send only the first 5 records
+    sendWishlistToServer('/download-wishlist', document.getElementById('bandcampPage').value, 5);
+});
+
+function sendWishlistToServer(endpoint, url, limit = null) {
+    fetch(endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: url, limit: limit }), // Include the limit if provided
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('insertionCount').textContent = `Total records inserted into Airtable: ${data.totalInserted}`;
+    })
+    .catch(error => console.error('Error:', error));
+}
+</script>
+
+</body>
+</html>

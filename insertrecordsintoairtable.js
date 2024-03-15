@@ -32,8 +32,8 @@ function insertRecordsIntoAirtable(records, callback) {
           "fld9NlMr7S3p9KKTW": record.album_title || '',
           "fldZNs43kKL3hN4e6": record.band_name,
           "fldGySLRQ8WyZaD1K": record.item_url,
-          "fldhw4eBQvHTx0VKQ": record.item_type,
-          "fldaImP1555aRyITd": record.added,
+          "fldfaftBvU2MtrBfx": record.item_type,
+          "fldLdNWNu0c4P8WCZ": record.added,
         }
       }));
       

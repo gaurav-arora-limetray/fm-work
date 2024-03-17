@@ -1,5 +1,6 @@
-require('dotenv').config();
-console.log('Airtable API Key:', process.env.AIRTABLE_API_KEY);
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const bodyParser = require('body-parser');
 const { fetchBandcampWishlist } = require('./fetchWishlistData');

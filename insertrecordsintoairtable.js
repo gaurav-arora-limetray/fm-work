@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const Airtable = require('airtable');
 
 // Configure Airtable with your API key and base

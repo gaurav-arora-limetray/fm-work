@@ -13,16 +13,19 @@
 
     <script>
 document.getElementById('downloadWishlist').addEventListener('click', function() {
-    sendWishlistToServer('/download-wishlist', document.getElementById('bandcampPage').value);
+    // Corrected endpoint to include '/api'
+    sendWishlistToServer('/api/download-wishlist', document.getElementById('bandcampPage').value);
 });
 
 document.getElementById('downloadFiveRecords').addEventListener('click', function() {
-    // Send only the first 5 records
-    sendWishlistToServer('/download-wishlist', document.getElementById('bandcampPage').value, 5);
+    // Corrected endpoint to include '/api' and limit to 5 records
+    sendWishlistToServer('/api/download-wishlist', document.getElementById('bandcampPage').value, 5);
 });
 
 function sendWishlistToServer(endpoint, url, limit = null) {
-    fetch(endpoint, {
+    // Corrected to ensure the fetch call uses an absolute URL
+    const baseUrl = window.location.origin; // Gets the base URL dynamically
+    fetch(`${baseUrl}${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
